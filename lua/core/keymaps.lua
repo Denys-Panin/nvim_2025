@@ -76,3 +76,12 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
+-- Diffview.nvim keymaps
+vim.keymap.set('n', '<leader>go', '<cmd>DiffviewOpen<CR>', { desc = 'Відкрити Diffview' })
+vim.keymap.set('n', '<leader>gc', '<cmd>DiffviewClose<CR>', { desc = 'Закрити Diffview' })
+vim.keymap.set('n', '<leader>gt', '<cmd>DiffviewToggleFiles<CR>', { desc = 'Переключити бічну панель' })
+vim.keymap.set('n', '<leader>gh', '<cmd>DiffviewFileHistory %<CR>', { desc = 'Історія поточного файлу' })
+vim.keymap.set('n', '<leader>gl', '<cmd>DiffviewOpen HEAD~1<CR>', { desc = 'Порівняти з попереднім комітом' })
+vim.keymap.set('n', '<leader>gr', '<cmd>DiffviewRefresh<CR>', { desc = 'Оновити Diffview' })
+vim.keymap.set('n', '<leader>gm', '<cmd>DiffviewOpen main<CR>', { desc = 'Порівняти з main/master' })
