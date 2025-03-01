@@ -40,11 +40,24 @@ return {
       on_attach = function(client, bufnr)
         if client.supports_method 'textDocument/formatting' then
           vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
+          -- Define a global variable to control formatting
+          vim.g.wf_save = false
+          -- Command to format and save (must start with uppercase in Neovim)
+          vim.api.nvim_create_user_command('Wf', function()
+            vim.g.wf_save = true
+            vim.cmd 'w'
+            vim.g.wf_save = false
+          end, {})
+          -- Create an alias for `wf` to `Wf`
+          vim.api.nvim_set_keymap('c', 'wf', 'Wf', { noremap = true, silent = true })
+          -- Autoformat only if triggered by :Wf
           vim.api.nvim_create_autocmd('BufWritePre', {
             group = augroup,
             buffer = bufnr,
             callback = function()
-              vim.lsp.buf.format { async = false }
+              if vim.g.wf_save then
+                vim.lsp.buf.format { async = false }
+              end
             end,
           })
         end
