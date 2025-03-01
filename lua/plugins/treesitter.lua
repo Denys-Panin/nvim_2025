@@ -40,49 +40,52 @@ return {
             end
         end
 
-        -- Визначаємо шлях до файлу styles.css
-        local css_dir = vim.fn.getcwd() .. "/css"
-        local css_file = css_dir .. "/styles.css"
+        -- 🔹 Отримуємо список всіх CSS-файлів у проєкті
+        local css_files = vim.fn.globpath(vim.fn.getcwd(), "**/*.css", false, true)
 
-        -- Перевіряємо, чи існує директорія, і якщо ні, створюємо її
-        if vim.fn.isdirectory(css_dir) == 0 then
-            vim.fn.mkdir(css_dir, "p")
+        if #css_files == 0 then
+            print("❌ CSS-файли не знайдено!")
+            return
         end
 
-        local existing_classes = {}
+        -- 🔹 Показуємо список файлів для вибору
+        vim.ui.select(css_files, {
+            prompt = "Виберіть файл для додавання класів:",
+        }, function(selected_file)
+            if not selected_file then
+                print("❌ Файл не вибрано, операцію скасовано.")
+                return
+            end
 
-        -- Якщо файл існує, зчитуємо його вміст
-        if vim.fn.filereadable(css_file) == 1 then
-            local lines = vim.fn.readfile(css_file)
-            for _, line in ipairs(lines) do
-                local existing_class = line:match("^%s*%.([%w%-_]+)%s*{")
-                if existing_class then
-                    existing_classes[existing_class] = true
+            local existing_classes = {}
+
+            -- Якщо файл існує, зчитуємо його вміст
+            if vim.fn.filereadable(selected_file) == 1 then
+                local lines = vim.fn.readfile(selected_file)
+                for _, line in ipairs(lines) do
+                    local existing_class = line:match("^%s*%.([%w%-_]+)%s*{")
+                    if existing_class then
+                        existing_classes[existing_class] = true
+                    end
                 end
             end
-        end
 
-        -- Формуємо CSS-код, додаючи тільки нові класи
-        local css_lines = {}
-        if vim.fn.filereadable(css_file) == 1 then
-            css_lines = vim.fn.readfile(css_file) -- Зчитуємо існуючий CSS
-        else
-            table.insert(css_lines, "/* Generated styles.css */") -- Додаємо заголовок, якщо файл новий
-        end
-
-        for class_name, _ in pairs(classes) do
-            if not existing_classes[class_name] then
-                table.insert(css_lines, "." .. class_name .. " {}")
+            -- Формуємо CSS-код, додаючи тільки нові класи
+            local css_lines = vim.fn.readfile(selected_file) or {}
+            for class_name, _ in pairs(classes) do
+                if not existing_classes[class_name] then
+                    table.insert(css_lines, "." .. class_name .. " {}")
+                end
             end
-        end
 
-        -- Записуємо в styles.css, зберігаючи існуючі стилі
-        vim.fn.writefile(css_lines, css_file)
+            -- Записуємо оновлений CSS у вибраний файл
+            vim.fn.writefile(css_lines, selected_file)
 
-        print("✅ CSS-файл оновлено: " .. css_file)
+            print("✅ CSS-файл оновлено: " .. selected_file)
 
-        -- Відкриваємо styles.css у Neovim
-        vim.cmd(string.format("edit %s", css_file))
+            -- Відкриваємо вибраний CSS-файл у Neovim
+            vim.cmd(string.format("edit %s", selected_file))
+        end)
     end
 
     -- 🔹 Прив’язуємо до Visual Mode (виділення + <leader>ec)
