@@ -85,3 +85,14 @@ vim.keymap.set('n', '<leader>gh', '<cmd>DiffviewFileHistory %<CR>', { desc = 'І
 vim.keymap.set('n', '<leader>gl', '<cmd>DiffviewOpen HEAD~1<CR>', { desc = 'Порівняти з попереднім комітом' })
 vim.keymap.set('n', '<leader>gr', '<cmd>DiffviewRefresh<CR>', { desc = 'Оновити Diffview' })
 vim.keymap.set('n', '<leader>gm', '<cmd>DiffviewOpen main<CR>', { desc = 'Порівняти з main/master' })
+
+-- Live server
+vim.keymap.set('n', '<leader>ls', function()
+  vim.fn.jobstart('live-server .', { detach = true })
+  print 'Live Server запущено 🚀'
+end, { desc = 'Запустити Live Server' })
+
+vim.keymap.set('n', '<leader>le', function()
+  vim.fn.jobstart('pkill -f live-server', { detach = true })
+  print 'Live Server зупинено ❌'
+end, { desc = 'Зупинити Live Server' })
