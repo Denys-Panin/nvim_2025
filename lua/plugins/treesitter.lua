@@ -16,9 +16,10 @@ return {
   config = function(_, opts)
     require('nvim-treesitter.configs').setup(opts)
 
-    -- 🔹 Функція для додавання класів із виділеного HTML у CSS
+    -- 🔹 Функція для додавання класів із виділеного HTML у CSS у правильному порядку
     function _G.ExtractSelectedHtmlClasses()
         local classes = {}
+        local seen_classes = {} -- Для унікальності класів
 
         -- Отримуємо виділений текст
         local start_line, start_col = unpack(vim.fn.getpos("'<"), 2, 3)
@@ -35,7 +36,10 @@ return {
         for _, line in ipairs(selected_lines) do
             for class_list in line:gmatch('class="(.-)"') do
                 for class_name in class_list:gmatch("%S+") do
-                    classes[class_name] = true
+                    if not seen_classes[class_name] then
+                        table.insert(classes, class_name)
+                        seen_classes[class_name] = true
+                    end
                 end
             end
         end
@@ -70,9 +74,9 @@ return {
                 end
             end
 
-            -- Формуємо CSS-код, додаючи тільки нові класи
+            -- Формуємо CSS-код, додаючи тільки нові класи у правильному порядку
             local css_lines = vim.fn.readfile(selected_file) or {}
-            for class_name, _ in pairs(classes) do
+            for _, class_name in ipairs(classes) do
                 if not existing_classes[class_name] then
                     table.insert(css_lines, "." .. class_name .. " {}")
                 end
