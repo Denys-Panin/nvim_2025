@@ -96,3 +96,7 @@ vim.keymap.set('n', '<leader>le', function()
   vim.fn.jobstart('pkill -f live-server', { detach = true })
   print 'Live Server зупинено ❌'
 end, { desc = 'Зупинити Live Server' })
+
+-- Unmark search word
+vim.keymap.set('n', '<leader>,', ':noh<CR>', { noremap = true, silent = true })
+
