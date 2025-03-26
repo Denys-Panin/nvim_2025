@@ -100,3 +100,14 @@ end, { desc = 'Зупинити Live Server' })
 -- Unmark search word
 vim.keymap.set('n', '<leader>,', ':noh<CR>', { noremap = true, silent = true })
 
+-- PHP formatting with php-cs-fixer
+vim.keymap.set('n', '<leader>pf', function()
+  vim.cmd('!php-cs-fixer fix --config=' .. vim.fn.stdpath('config') .. '/tools_config/php-cs-fixer.php %')
+  vim.cmd('edit')
+end, { noremap = true, silent = true, desc = 'Format PHP file with local fixer config' })
+
+--
+-- vim.keymap.set('n', '<leader>pf', function()
+--   vim.cmd('!php-cs-fixer fix %')
+--   vim.cmd('edit') -- перезавантажує буфер після форматування
+-- end, { noremap = true, silent = true, desc = 'Format PHP file with PHP-CS-Fixer' })

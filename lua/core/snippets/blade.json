@@ -1,0 +1,442 @@
+{
+  "@if": {
+    "prefix": "@if",
+    "body": [
+      "@if (${1:condition})",
+      "    $0",
+      "@endif"
+    ],
+    "description": "Blade if statement"
+  },
+  "@foreach": {
+    "prefix": "@foreach",
+    "body": [
+      "@foreach (${1:collection} as ${2:item})",
+      "    $0",
+      "@endforeach"
+    ],
+    "description": "Blade foreach loop"
+  },
+  "@for": {
+    "prefix": "@for",
+    "body": [
+      "@for (${1:$i = 0; $i < $count; $i++})",
+      "    $0",
+      "@endfor"
+    ],
+    "description": "Blade for loop"
+  },
+  "@while": {
+    "prefix": "@while",
+    "body": [
+      "@while (${1:condition})",
+      "    $0",
+      "@endwhile"
+    ],
+    "description": "Blade while loop"
+  },
+  "@isset": {
+    "prefix": "@isset",
+    "body": [
+      "@isset(${1:variable})",
+      "    $0",
+      "@endisset"
+    ],
+    "description": "Blade isset directive"
+  },
+  "@empty": {
+    "prefix": "@empty",
+    "body": [
+      "@empty(${1:variable})",
+      "    $0",
+      "@endempty"
+    ],
+    "description": "Blade empty directive"
+  },
+  "@auth": {
+    "prefix": "@auth",
+    "body": [
+      "@auth",
+      "    $0",
+      "@endauth"
+    ],
+    "description": "Blade auth directive"
+  },
+  "@guest": {
+    "prefix": "@guest",
+    "body": [
+      "@guest",
+      "    $0",
+      "@endguest"
+    ],
+    "description": "Blade guest directive"
+  },
+  "@can": {
+    "prefix": "@can",
+    "body": [
+      "@can('${1:permission}')",
+      "    $0",
+      "@endcan"
+    ],
+    "description": "Blade can directive"
+  },
+  "@cannot": {
+    "prefix": "@cannot",
+    "body": [
+      "@cannot('${1:permission}')",
+      "    $0",
+      "@endcannot"
+    ],
+    "description": "Blade cannot directive"
+  },
+  "@include": {
+    "prefix": "@include",
+    "body": [
+      "@include('${1:view}')"
+    ],
+    "description": "Include a Blade view"
+  },
+  "@extends": {
+    "prefix": "@extends",
+    "body": [
+      "@extends('${1:layout}')"
+    ],
+    "description": "Extend a Blade layout"
+  },
+  "@section": {
+    "prefix": "@section",
+    "body": [
+      "@section('${1:name}')",
+      "    $0",
+      "@endsection"
+    ],
+    "description": "Blade section block"
+  },
+  "@yield": {
+    "prefix": "@yield",
+    "body": [
+      "@yield('${1:section}')"
+    ],
+    "description": "Blade yield directive"
+  },
+  "@push": {
+    "prefix": "@push",
+    "body": [
+      "@push('${1:stack}')",
+      "    $0",
+      "@endpush"
+    ],
+    "description": "Push to stack"
+  },
+  "@stack": {
+    "prefix": "@stack",
+    "body": [
+      "@stack('${1:stack}')"
+    ],
+    "description": "Render stack content"
+  },
+  "@csrf": {
+    "prefix": "@csrf",
+    "body": [
+      "@csrf"
+    ],
+    "description": "CSRF token"
+  },
+  "@method": {
+    "prefix": "@method",
+    "body": [
+      "@method('${1:PUT}')"
+    ],
+    "description": "HTML form method override"
+  },
+  "@php": {
+    "prefix": "@php",
+    "body": [
+      "@php",
+      "    $0",
+      "@endphp"
+    ],
+    "description": "Raw PHP block"
+  },
+  "@elseif": {
+    "prefix": "@elseif",
+    "body": [
+      "@elseif (${1:condition})",
+      "    $0"
+    ],
+    "description": "Blade elseif statement"
+  },
+  "@else": {
+    "prefix": "@else",
+    "body": [
+      "@else",
+      "    $0"
+    ],
+    "description": "Blade else block"
+  },
+  "@endwhile": {
+    "prefix": "@endwhile",
+    "body": [
+      "@endwhile"
+    ],
+    "description": "End while loop"
+  },
+  "@endfor": {
+    "prefix": "@endfor",
+    "body": [
+      "@endfor"
+    ],
+    "description": "End for loop"
+  },
+  "@endforeach": {
+    "prefix": "@endforeach",
+    "body": [
+      "@endforeach"
+    ],
+    "description": "End foreach loop"
+  },
+  "@endisset": {
+    "prefix": "@endisset",
+    "body": [
+      "@endisset"
+    ],
+    "description": "End isset"
+  },
+  "@endempty": {
+    "prefix": "@endempty",
+    "body": [
+      "@endempty"
+    ],
+    "description": "End empty"
+  },
+  "@endauth": {
+    "prefix": "@endauth",
+    "body": [
+      "@endauth"
+    ],
+    "description": "End auth"
+  },
+  "@endguest": {
+    "prefix": "@endguest",
+    "body": [
+      "@endguest"
+    ],
+    "description": "End guest"
+  },
+  "@endcan": {
+    "prefix": "@endcan",
+    "body": [
+      "@endcan"
+    ],
+    "description": "End can"
+  },
+  "@endcannot": {
+    "prefix": "@endcannot",
+    "body": [
+      "@endcannot"
+    ],
+    "description": "End cannot"
+  },
+  "@endsection": {
+    "prefix": "@endsection",
+    "body": [
+      "@endsection"
+    ],
+    "description": "End section"
+  },
+  "@verbatim": {
+    "prefix": "@verbatim",
+    "body": [
+      "@verbatim",
+      "    $0",
+      "@endverbatim"
+    ],
+    "description": "Blade verbatim block"
+  },
+  "@once": {
+    "prefix": "@once",
+    "body": [
+      "@once",
+      "    $0",
+      "@endonce"
+    ],
+    "description": "Blade once block"
+  },
+  "@endonce": {
+    "prefix": "@endonce",
+    "body": [
+      "@endonce"
+    ],
+    "description": "End once"
+  },
+  "@env": {
+    "prefix": "@env",
+    "body": [
+      "@env('${1:environment}')",
+      "    $0",
+      "@endenv"
+    ],
+    "description": "Environment specific directive"
+  },
+  "@endenv": {
+    "prefix": "@endenv",
+    "body": [
+      "@endenv"
+    ],
+    "description": "End environment block"
+  },
+  "@unless": {
+    "prefix": "@unless",
+    "body": [
+      "@unless (${1:condition})",
+      "    $0",
+      "@endunless"
+    ],
+    "description": "Blade unless statement"
+  },
+  "@endunless": {
+    "prefix": "@endunless",
+    "body": [
+      "@endunless"
+    ],
+    "description": "End unless"
+  },
+  "@forelse": {
+    "prefix": "@forelse",
+    "body": [
+      "@forelse (${1:collection} as ${2:item})",
+      "    $0",
+      "@empty",
+      "    ",
+      "@endforelse"
+    ],
+    "description": "Blade forelse loop"
+  },
+  "@endforelse": {
+    "prefix": "@endforelse",
+    "body": [
+      "@endforelse"
+    ],
+    "description": "End forelse"
+  },
+  "@includeIf": {
+    "prefix": "@includeIf",
+    "body": [
+      "@includeIf('${1:view}')"
+    ],
+    "description": "Include view if it exists"
+  },
+  "@includeWhen": {
+    "prefix": "@includeWhen",
+    "body": [
+      "@includeWhen(${1:condition}, '${2:view}')"
+    ],
+    "description": "Include view when condition is true"
+  },
+  "@includeUnless": {
+    "prefix": "@includeUnless",
+    "body": [
+      "@includeUnless(${1:condition}, '${2:view}')"
+    ],
+    "description": "Include view unless condition is true"
+  },
+  "@parent": {
+    "prefix": "@parent",
+    "body": [
+      "@parent"
+    ],
+    "description": "Insert content from parent section"
+  },
+  "@endpush": {
+    "prefix": "@endpush",
+    "body": [
+      "@endpush"
+    ],
+    "description": "End push block"
+  },
+  "@component": {
+    "prefix": "@component",
+    "body": [
+      "@component('${1:view}')",
+      "    $0",
+      "@endcomponent"
+    ],
+    "description": "Blade component block"
+  },
+  "@endcomponent": {
+    "prefix": "@endcomponent",
+    "body": [
+      "@endcomponent"
+    ],
+    "description": "End component block"
+  },
+  "@slot": {
+    "prefix": "@slot",
+    "body": [
+      "@slot('${1:name}')",
+      "    $0",
+      "@endslot"
+    ],
+    "description": "Blade slot block"
+  },
+  "@endslot": {
+    "prefix": "@endslot",
+    "body": [
+      "@endslot"
+    ],
+    "description": "End slot block"
+  },
+  "@canany": {
+    "prefix": "@canany",
+    "body": [
+      "@canany([${1:'view', 'edit'}], ${2:object})",
+      "    $0",
+      "@endcanany"
+    ],
+    "description": "Blade canany directive"
+  },
+  "@endcanany": {
+    "prefix": "@endcanany",
+    "body": [
+      "@endcanany"
+    ],
+    "description": "End canany"
+  },
+  "@endphp": {
+    "prefix": "@endphp",
+    "body": [
+      "@endphp"
+    ],
+    "description": "End php block"
+  },
+  "@endverbatim": {
+    "prefix": "@endverbatim",
+    "body": [
+      "@endverbatim"
+    ],
+    "description": "End verbatim"
+  },
+  "@json": {
+    "prefix": "@json",
+    "body": [
+      "@json(${1:data})"
+    ],
+    "description": "Convert data to JSON"
+  },
+  "@production": {
+    "prefix": "@production",
+    "body": [
+      "@production",
+      "    $0",
+      "@endproduction"
+    ],
+    "description": "Production environment block"
+  },
+  "@endproduction": {
+    "prefix": "@endproduction",
+    "body": [
+      "@endproduction"
+    ],
+    "description": "End production block"
+  }
+}
