@@ -106,8 +106,8 @@ vim.keymap.set('n', '<leader>pf', function()
   vim.cmd('edit')
 end, { noremap = true, silent = true, desc = 'Format PHP file with local fixer config' })
 
---
--- vim.keymap.set('n', '<leader>pf', function()
---   vim.cmd('!php-cs-fixer fix %')
---   vim.cmd('edit') -- перезавантажує буфер після форматування
--- end, { noremap = true, silent = true, desc = 'Format PHP file with PHP-CS-Fixer' })
+-- Laravel formatting
+vim.keymap.set('n', '<leader>lf', function()
+  vim.cmd('!pint %')
+  vim.cmd('edit')
+end, { noremap = true, silent = true, desc = 'Laravel Pint форматування' })

@@ -32,6 +32,7 @@ require('lazy').setup {
   require 'plugins.emmet-vim',
   require 'plugins.toggleterm',
   require 'plugins.diffview',
+  require 'plugins.pint',
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
