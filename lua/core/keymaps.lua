@@ -111,3 +111,13 @@ vim.keymap.set('n', '<leader>lf', function()
   vim.cmd('!pint %')
   vim.cmd('edit')
 end, { noremap = true, silent = true, desc = 'Laravel Pint форматування' })
+
+-- Search class name in css files
+vim.keymap.set('n', '<leader>cc', function()
+  require('telescope.builtin').grep_string({
+    search = vim.fn.expand('<cword>'),
+    additional_args = function()
+      return { "--glob=**/*.css", "--glob=**/*.scss" }
+    end
+  })
+end, { desc = "Search class in CSS/SCSS files" })
