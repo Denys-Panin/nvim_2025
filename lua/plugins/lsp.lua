@@ -6,6 +6,7 @@ return {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     { 'j-hui/fidget.nvim', opts = {} },
     'hrsh7th/cmp-nvim-lsp',
+    'nvimtools/none-ls.nvim',
   },
   config = function()
     vim.filetype.add({
@@ -74,8 +75,7 @@ return {
     local servers = {
       intelephense = {},
       ts_ls = {},
-      ruff = {},
-      pylsp = { settings = { pylsp = { plugins = { pyflakes = { enabled = false }, pycodestyle = { enabled = false } } } } },
+      pyright = {},
       html = { filetypes = { 'html', 'twig', 'hbs', 'blade' } },
       cssls = {},
       tailwindcss = {},
@@ -97,10 +97,8 @@ return {
       },
     }
 
-    require('mason').setup()
-
     local ensure_installed = {
-      'intelephense', 'ts_ls', 'ruff', 'pylsp', 'html', 'cssls',
+      'intelephense', 'ts_ls', 'pyright', 'html', 'cssls',
       'tailwindcss', 'dockerls', 'sqlls', 'terraformls', 'jsonls', 'yamlls',
       'lua_ls', 'stylua', 'blade-formatter', 'php-cs-fixer', 'phpstan',
     }
@@ -116,6 +114,24 @@ return {
         end,
       },
     }
+
+    local null_ls = require("null-ls")
+    null_ls.setup({
+      sources = {
+        null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.isort,
+        null_ls.builtins.formatting.djlint.with({
+          extra_args = { "--profile=django" }
+        }),
+      },
+      on_attach = function(client, bufnr)
+        if client.supports_method("textDocument/formatting") then
+          vim.keymap.set("n", "<leader>fp", function()
+            vim.lsp.buf.format({ bufnr = bufnr })
+          end, { buffer = bufnr, desc = "Format file" })
+        end
+      end,
+    })
   end,
 }
 
