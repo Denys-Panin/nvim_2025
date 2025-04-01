@@ -112,15 +112,35 @@ vim.keymap.set('n', '<leader>lf', function()
   vim.cmd('edit')
 end, { noremap = true, silent = true, desc = 'Laravel Pint форматування' })
 
--- Search class name in css files
-vim.keymap.set('n', '<leader>cc', function()
+-- Search in HTML files
+vim.keymap.set('n', '<leader>sh', function()
+  require('telescope.builtin').grep_string({
+    search = vim.fn.expand('<cword>'),
+    additional_args = function()
+      return { "--glob=**/*.html" }
+    end
+  })
+end, { desc = "Search in HTML files" })
+
+-- Search in CSS files
+vim.keymap.set('n', '<leader>sc', function()
   require('telescope.builtin').grep_string({
     search = vim.fn.expand('<cword>'),
     additional_args = function()
       return { "--glob=**/*.css", "--glob=**/*.scss" }
     end
   })
-end, { desc = "Search class in CSS/SCSS files" })
+end, { desc = "Search in CSS/SCSS files" })
+
+-- Search in JS files
+vim.keymap.set('n', '<leader>sj', function()
+  require('telescope.builtin').grep_string({
+    search = vim.fn.expand('<cword>'),
+    additional_args = function()
+      return { "--glob=**/*.js" }
+    end
+  })
+end, { desc = "Search in JS files" })
 
 -- Trouble diagnostics (for v2)
 vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (workspace + buffer)" })
