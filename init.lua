@@ -33,6 +33,7 @@ require('lazy').setup {
   require 'plugins.toggleterm',
   require 'plugins.diffview',
   require 'plugins.pint',
+  require 'plugins.trouble',
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`

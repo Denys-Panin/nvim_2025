@@ -121,3 +121,13 @@ vim.keymap.set('n', '<leader>cc', function()
     end
   })
 end, { desc = "Search class in CSS/SCSS files" })
+
+-- Trouble diagnostics (for v2)
+vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (workspace + buffer)" })
+vim.keymap.set("n", "<leader>xr", "<cmd>Trouble lsp_references toggle<cr>", { desc = "LSP References" })
+vim.keymap.set("n", "<leader>xq", "<cmd>Trouble quickfix toggle<cr>", { desc = "Quickfix list" })
+vim.keymap.set("n", "<leader>xl", "<cmd>Trouble loclist toggle<cr>", { desc = "Location list" })
+vim.keymap.set("n", "<leader>xs", "<cmd>Trouble symbols toggle<cr>", { desc = "Document symbols" })
+
+-- Telescope diagnostics
+vim.keymap.set("n", "<leader>sd", "<cmd>Telescope diagnostics<cr>", { desc = "Search diagnostics (Telescope)", noremap = true, silent = true })
