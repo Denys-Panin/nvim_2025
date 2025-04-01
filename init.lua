@@ -34,6 +34,7 @@ require('lazy').setup {
   require 'plugins.diffview',
   require 'plugins.pint',
   require 'plugins.trouble',
+  require 'plugins.session',
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
