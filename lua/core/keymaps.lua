@@ -151,3 +151,11 @@ vim.keymap.set("n", "<leader>xs", "<cmd>Trouble symbols toggle<cr>", { desc = "D
 
 -- Telescope diagnostics
 vim.keymap.set("n", "<leader>sd", "<cmd>Telescope diagnostics<cr>", { desc = "Search diagnostics (Telescope)", noremap = true, silent = true })
+
+-- Copying file path
+vim.keymap.set('n', '<leader>cp', function()
+  local path = vim.fn.expand('%:p')
+  vim.fn.setreg('+', path)
+  vim.notify('Copied: ' .. path, vim.log.levels.INFO)
+end, { noremap = true, silent = true, desc = 'Copy full file path to clipboard' })
+
