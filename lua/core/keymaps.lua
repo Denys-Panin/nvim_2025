@@ -4,7 +4,27 @@ vim.g.maplocalleader = ' '
 
 vim.keymap.set('n', '<leader>c', ':bdelete<CR>', { noremap = true, silent = true })
 
-vim.keymap.set('n', 'x', ':bdelete<CR>', { noremap = true, silent = true })
+-- vim.keymap.set('n', 'x', ':bdelete<CR>', { noremap = true, silent = true })
+
+vim.keymap.set('n', 'x', function()
+  local next_buf = vim.fn.bufnr('#')  -- попередній буфер
+  vim.cmd('bdelete')
+  if vim.fn.buflisted(next_buf) == 1 then
+    vim.cmd('buffer ' .. next_buf)
+  else
+    vim.cmd('bnext')
+  end
+end, { noremap = true, silent = true })
+
+vim.keymap.set('n', 'xx', function()
+  local bufs = vim.api.nvim_list_bufs()
+  for _, buf in ipairs(bufs) do
+    if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_option(buf, 'buftype') == '' then
+      vim.api.nvim_buf_delete(buf, { force = true })
+    end
+  end
+end, { noremap = true, silent = true })
+
 -- Disable the spacebar key's default behavior in Normal and Visual modes
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
