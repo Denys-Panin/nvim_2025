@@ -106,6 +106,19 @@ vim.keymap.set('n', '<leader>gl', '<cmd>DiffviewOpen HEAD~1<CR>', { desc = 'По
 vim.keymap.set('n', '<leader>gr', '<cmd>DiffviewRefresh<CR>', { desc = 'Оновити Diffview' })
 vim.keymap.set('n', '<leader>gm', '<cmd>DiffviewOpen main<CR>', { desc = 'Порівняти з main/master' })
 
+-- Gitsigns.nvim keymaps
+vim.keymap.set('n', '<leader>gb', function()
+  require('gitsigns').blame_line({ full = true })
+end, { desc = 'Показати blame для рядка' })
+
+vim.keymap.set('n', '<leader>gp', '<cmd>Gitsigns preview_hunk<CR>', { desc = 'Показати зміни (hunk)' })
+vim.keymap.set('n', '<leader>gs', '<cmd>Gitsigns stage_hunk<CR>', { desc = 'Закомітити частину змін (hunk)' })
+vim.keymap.set('n', '<leader>gu', '<cmd>Gitsigns undo_stage_hunk<CR>', { desc = 'Відмінити staging hunk' })
+vim.keymap.set('n', '<leader>gn', '<cmd>Gitsigns next_hunk<CR>', { desc = 'Наступна зміна (hunk)' })
+vim.keymap.set('n', '<leader>gN', '<cmd>Gitsigns prev_hunk<CR>', { desc = 'Попередня зміна (hunk)' })
+vim.keymap.set('n', '<leader>gd', '<cmd>Gitsigns diffthis<CR>', { desc = 'Порівняти з HEAD' })
+vim.keymap.set('n', '<leader>gD', '<cmd>Gitsigns toggle_deleted<CR>', { desc = 'Показати/сховати видалені рядки' })
+
 -- Live server
 vim.keymap.set('n', '<leader>ls', function()
   vim.fn.jobstart('live-server .', { detach = true })
