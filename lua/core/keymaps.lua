@@ -2,8 +2,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.keymap.set('n', '<leader>c', ':bdelete<CR>', { noremap = true, silent = true })
-
 -- vim.keymap.set('n', 'x', ':bdelete<CR>', { noremap = true, silent = true })
 
 vim.keymap.set('n', 'x', function()
