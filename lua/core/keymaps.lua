@@ -5,7 +5,7 @@ vim.g.maplocalleader = ' '
 -- vim.keymap.set('n', 'x', ':bdelete<CR>', { noremap = true, silent = true })
 
 vim.keymap.set('n', 'x', function()
-  local next_buf = vim.fn.bufnr('#')  -- попередній буфер
+  local next_buf = vim.fn.bufnr('#')
   vim.cmd('bdelete')
   if vim.fn.buflisted(next_buf) == 1 then
     vim.cmd('buffer ' .. next_buf)
@@ -189,4 +189,9 @@ vim.keymap.set('n', '<leader>cp', function()
   vim.fn.setreg('+', path)
   vim.notify('Copied: ' .. path, vim.log.levels.INFO)
 end, { noremap = true, silent = true, desc = 'Copy full file path to clipboard' })
+
+-- Formatter JSON
+vim.keymap.set("n", "<leader>fj", function()
+  require("conform").format()
+end, { desc = "Format JSON" })
 

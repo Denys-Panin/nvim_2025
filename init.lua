@@ -35,7 +35,47 @@ require('lazy').setup {
   require 'plugins.pint',
   require 'plugins.trouble',
   require 'plugins.session',
+  require 'plugins.conform',
 }
+
+local default_theme = "onedark"  -- тут змінюй яку тему хочеш
+
+local themes = {
+  nord = function()
+    require('lazy').load { plugins = { 'nord.nvim' } }
+    require('nord').set()
+  end,
+
+  sonokai = function()
+    require('lazy').load { plugins = { 'sonokai' } }
+    vim.cmd.colorscheme('sonokai')
+  end,
+
+  onedark = function()
+    require('lazy').load { plugins = { 'onedark.nvim' } }
+    require('onedark').load()
+  end,
+
+  github = function()
+    require('lazy').load { plugins = { 'github-nvim-theme' } }
+    vim.cmd("colorscheme github_light_default")
+  end,
+
+  cyberdream = function()
+    require('lazy').load { plugins = { 'cyberdream.nvim' } }
+    vim.cmd.colorscheme('cyberdream')
+  end,
+}
+
+-- Мапінги
+vim.keymap.set('n', '<leader>tn', themes.nord, { desc = 'Nord Theme' })
+vim.keymap.set('n', '<leader>ts', themes.sonokai, { desc = 'Sonokai Theme' })
+vim.keymap.set('n', '<leader>to', themes.onedark, { desc = 'Onedark Theme' })
+vim.keymap.set('n', '<leader>tg', themes.github, { desc = 'Github Theme' })
+vim.keymap.set('n', '<leader>tc', themes.cyberdream, { desc = 'Cyberdream Theme' })
+
+-- Автоматичне застосування дефолтної теми:
+themes[default_theme]()
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
