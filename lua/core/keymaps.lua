@@ -195,3 +195,11 @@ vim.keymap.set("n", "<leader>fj", function()
   require("conform").format()
 end, { desc = "Format JSON" })
 
+
+-- Format current buffer (Python/any) using conform with LSP fallback
+vim.keymap.set("n", "<leader>ff", function()
+  require("conform").format({
+    lsp_fallback = true,   -- якщо немає локального форматера, піде через LSP/null-ls
+    async = false,
+  })
+end, { desc = "Format file" })

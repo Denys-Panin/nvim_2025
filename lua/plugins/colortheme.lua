@@ -54,5 +54,27 @@ return {
       }
     end,
   },
+  {
+    "EdenEast/nightfox.nvim",
+    lazy = true,
+    priority = 1000,
+    opts = {
+      options = {
+        transparent = true,
+        terminal_colors = true,
+        dim_inactive = false,
+        module_default = true,
+        styles = {
+          comments  = "italic",
+          keywords  = "bold",
+          types     = "bold",
+          functions = "bold",
+        },
+      },
+    },
+    config = function(_, opts)
+      require("nightfox").setup(opts)
+    end,
+  },
 }
 

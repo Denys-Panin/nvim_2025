@@ -38,7 +38,7 @@ require('lazy').setup {
   require 'plugins.conform',
 }
 
-local default_theme = "onedark"  -- тут змінюй яку тему хочеш
+local default_theme = "carbonfox"  -- тут змінюй яку тему хочеш
 
 local themes = {
   nord = function()
@@ -65,6 +65,40 @@ local themes = {
     require('lazy').load { plugins = { 'cyberdream.nvim' } }
     vim.cmd.colorscheme('cyberdream')
   end,
+  nightfox = function()
+    require("lazy").load({ plugins = { "nightfox.nvim" } })
+    vim.cmd.colorscheme("nightfox")
+  end,
+
+  nordfox = function()
+    require("lazy").load({ plugins = { "nightfox.nvim" } })
+    vim.cmd.colorscheme("nordfox")
+  end,
+
+  terafox = function()
+    require("lazy").load({ plugins = { "nightfox.nvim" } })
+    vim.cmd.colorscheme("terafox")
+  end,
+
+  carbonfox = function()
+    require("lazy").load({ plugins = { "nightfox.nvim" } })
+    vim.cmd.colorscheme("carbonfox")
+  end,
+
+  duskfox = function()
+    require("lazy").load({ plugins = { "nightfox.nvim" } })
+    vim.cmd.colorscheme("duskfox")
+  end,
+
+  dayfox = function()
+    require("lazy").load({ plugins = { "nightfox.nvim" } })
+    vim.cmd.colorscheme("dayfox")
+  end,
+
+  dawnfox = function()
+    require("lazy").load({ plugins = { "nightfox.nvim" } })
+    vim.cmd.colorscheme("dawnfox")
+  end,
 }
 
 -- Мапінги
@@ -73,7 +107,13 @@ vim.keymap.set('n', '<leader>ts', themes.sonokai, { desc = 'Sonokai Theme' })
 vim.keymap.set('n', '<leader>to', themes.onedark, { desc = 'Onedark Theme' })
 vim.keymap.set('n', '<leader>tg', themes.github, { desc = 'Github Theme' })
 vim.keymap.set('n', '<leader>tc', themes.cyberdream, { desc = 'Cyberdream Theme' })
-
+vim.keymap.set('n', '<leader>tf', themes.nightfox, { desc = 'Nightfox' })
+vim.keymap.set('n', '<leader>tnf', themes.nordfox, { desc = 'Nordfox' })
+vim.keymap.set('n', '<leader>tt', themes.terafox, { desc = 'Terafox' })
+vim.keymap.set('n', '<leader>tcf', themes.carbonfox, { desc = 'Carbonfox' })
+vim.keymap.set('n', '<leader>tds', themes.duskfox, { desc = 'Duskfox' })
+vim.keymap.set('n', '<leader>tdy', themes.dayfox, { desc = 'Dayfox' })
+vim.keymap.set('n', '<leader>tdw', themes.dawnfox, { desc = 'Dawnfox' })
 -- Автоматичне застосування дефолтної теми:
 themes[default_theme]()
 
