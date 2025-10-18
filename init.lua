@@ -4,8 +4,7 @@ require 'core.snippets' -- Custom code snippets
 
 -- Set up the Lazy plugin manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
+if not (vim.uv or vim.loop).fs_stat(lazypath) then local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
   local out = vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
   if vim.v.shell_error ~= 0 then
     error('Error cloning lazy.nvim:\n' .. out)
@@ -36,9 +35,10 @@ require('lazy').setup {
   require 'plugins.trouble',
   require 'plugins.session',
   require 'plugins.conform',
+  require 'plugins.noice',
 }
 
-local default_theme = "carbonfox"  -- тут змінюй яку тему хочеш
+local default_theme = "carbonfox" -- here change any theme you want 
 
 local themes = {
   nord = function()
@@ -101,7 +101,7 @@ local themes = {
   end,
 }
 
--- Мапінги
+-- Mappings for themes
 vim.keymap.set('n', '<leader>tn', themes.nord, { desc = 'Nord Theme' })
 vim.keymap.set('n', '<leader>ts', themes.sonokai, { desc = 'Sonokai Theme' })
 vim.keymap.set('n', '<leader>to', themes.onedark, { desc = 'Onedark Theme' })
@@ -114,7 +114,7 @@ vim.keymap.set('n', '<leader>tcf', themes.carbonfox, { desc = 'Carbonfox' })
 vim.keymap.set('n', '<leader>tds', themes.duskfox, { desc = 'Duskfox' })
 vim.keymap.set('n', '<leader>tdy', themes.dayfox, { desc = 'Dayfox' })
 vim.keymap.set('n', '<leader>tdw', themes.dawnfox, { desc = 'Dawnfox' })
--- Автоматичне застосування дефолтної теми:
+-- Automatically apply the default theme:
 themes[default_theme]()
 
 -- The line beneath this is called `modeline`. See `:help modeline`
